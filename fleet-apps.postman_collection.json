@@ -1,0 +1,196 @@
+{
+  "info": {
+    "_postman_id": "240ad7a7-c0f4-4f5a-a41b-883fd09d789b",
+    "name": "fleet-apps",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "9850819"
+  },
+  "item": [
+    {
+      "name": "Get Latest Vehicle Location",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3210/vehicles/B1234XYZ/location",
+          "host": [
+            "localhost"
+          ],
+          "port": "3210",
+          "path": [
+            "vehicles",
+            "B1234XYZ",
+            "location"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3210/vehicles/B1234XYZ/location",
+              "host": [
+                "localhost"
+              ],
+              "port": "3210",
+              "path": [
+                "vehicles",
+                "B1234XYZ",
+                "location"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "98"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"62-MGEmX0p1KbFct4k0JKhbeasT+9k\""
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 11 May 2025 15:04:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"vehicle_id\": \"B1234XYZ\",\n    \"latitude\": \"-6.201781\",\n    \"longitude\": \"106.845600\",\n    \"timestamp\": \"1746975855\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Vehicle Location History",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3210/vehicles/B1234XYZ/history?start=1746960000&end=1754558400&page=1&limit=10",
+          "host": [
+            "localhost"
+          ],
+          "port": "3210",
+          "path": [
+            "vehicles",
+            "B1234XYZ",
+            "history"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "1746960000"
+            },
+            {
+              "key": "end",
+              "value": "1754558400"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3210/vehicles/B1234XYZ/history?start=1746960000&end=1754558400&page=1&limit=10",
+              "host": [
+                "localhost"
+              ],
+              "port": "3210",
+              "path": [
+                "vehicles",
+                "B1234XYZ",
+                "history"
+              ],
+              "query": [
+                {
+                  "key": "start",
+                  "value": "1746960000"
+                },
+                {
+                  "key": "end",
+                  "value": "1754558400"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "969"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"3c9-TMbsbxgeXvwJ6XNDOFjQQdLPwD0\""
+            },
+            {
+              "key": "Date",
+              "value": "Sun, 11 May 2025 18:47:55 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"data\": [\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.203853,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974840\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.202063,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974842\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.203785,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974844\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.208543,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974846\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.20229,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974848\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.205487,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974850\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.20371,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974852\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.198951,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974854\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.204041,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974856\n        },\n        {\n            \"vehicle_id\": \"B1234XYZ\",\n            \"latitude\": -6.207644,\n            \"longitude\": 106.8456,\n            \"timestamp\": 1746974858\n        }\n    ],\n    \"pagination\": {\n        \"total_data\": 5297,\n        \"total_pages\": 530\n    }\n}"
+        }
+      ]
+    }
+  ]
+}

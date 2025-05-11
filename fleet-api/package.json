@@ -1,0 +1,20 @@
+{
+  "name": "fleet-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate:up": "node-pg-migrate up -m 'src/migrations' -f 'src/config/db-migrate.js'",
+    "migrate:down": "node-pg-migrate down -m 'src/migrations' -f 'src/config/db-migrate.js'"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "node-pg-migrate": "^7.9.1",
+    "pg": "^8.15.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

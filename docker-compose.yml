@@ -1,0 +1,84 @@
+version: '3'
+
+services:
+  fleet-postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=fleet_management
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    container_name: fleet-postgres
+
+  fleet-mqtt-broker:
+    image: eclipse-mosquitto
+    container_name: fleet-mqtt-broker
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+  fleet-rabbitmq-broker:
+    image: rabbitmq:3-management
+    container_name: fleet-rabbitmq-broker
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  fleet-api:
+    build: ./fleet-api
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=fleet-postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=fleet_management
+    ports:
+      - "${FLEET_API_PORT}:${FLEET_API_PORT}"
+    depends_on:
+      - fleet-postgres
+    container_name: fleet-api
+
+  fleet-mqtt-subscriber:
+    build: ./fleet-mqtt-subscriber
+    environment:
+      - DB_HOST=fleet-postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=fleet_management
+      - DB_PORT=5432
+      - MQTT_BROKER_URL=fleet-mqtt-broker:1883
+      - RABBITMQ_URL=fleet-rabbitmq-broker:5672
+    depends_on:
+      - fleet-postgres
+      - fleet-mqtt-broker
+      - fleet-rabbitmq-broker
+    container_name: fleet-mqtt-subscriber
+
+  fleet-mqtt-publisher:
+    build: ./fleet-mqtt-publisher
+    environment:
+      - MQTT_BROKER_URL=fleet-mqtt-broker:1883
+    depends_on:
+      - fleet-mqtt-broker
+    container_name: fleet-mqtt-publisher
+
+  fleet-rabbitmq-worker:
+    build: ./fleet-rabbitmq-worker
+    environment:
+      - RABBITMQ_URL=fleet-rabbitmq-broker:5672
+    depends_on:
+      - fleet-rabbitmq-broker
+    container_name: fleet-rabbitmq-worker
+
+
+volumes:
+  postgres_data:
