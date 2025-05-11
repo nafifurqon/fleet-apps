@@ -36,6 +36,12 @@ cd fleet-apps
 
 ---
 
+## Branch
+
+This project uses the `main` branch. Ensure you are on the `main` branch when working with this repository.
+
+---
+
 ### 2. Configure Environment Variables
 1. Copy the example environment file:
    ```bash
